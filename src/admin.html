@@ -5,24 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>管理页面</title>
+    <link rel="stylesheet" href="./admin.css">
 </head>
 <body>
-    <audio controls src="http://p6v6vgcxu.bkt.clouddn.com/%E3%83%8F%E3%83%B3%E3%83%8F%E3%82%99%E3%83%BC%E3%83%88%20%E3%83%8F%E3%83%B3%E3%83%8F%E3%82%99%E3%83%BC%E3%83%88-%E4%BB%8A%E6%99%A9%E3%81%AF%E3%81%8A%E6%9C%88%E3%81%95%E3%82%93%20%20.mp3"></audio>
-    <div id="yyy">
-        <button id="xxx">upload</button>
+    <div id="upload" class="upload">
+        <button id="uploadButton" class="upload__button">点击上传或拖曳文件</button>
+        <p>文件大小不能超过40MB</p>
     </div>
+    <div id="uploadStatus"></div>
+    <audio controls src="http://p6v6vgcxu.bkt.clouddn.com/%E3%83%8F%E3%83%B3%E3%83%8F%E3%82%99%E3%83%BC%E3%83%88%20%E3%83%8F%E3%83%B3%E3%83%8F%E3%82%99%E3%83%BC%E3%83%88-%E4%BB%8A%E6%99%A9%E3%81%AF%E3%81%8A%E6%9C%88%E3%81%95%E3%82%93%20%20.mp3"></audio>
     
-
     <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+    <script src="../vendors/moxie.min.js"></script>
     <script src="../node_modules/qiniu-js/dist/qiniu.min.js"></script>
     <script src="../node_modules/plupload/js/plupload.min.js"></script>
-    <script>
-        var APP_ID = 'V6Nr3sS8OBTGUmCqusdkxi6n-gzGzoHsz'
-        var APP_KEY = 'Eym2bArGT3xrsNn04EafjxRv'
-        AV.init({
-            appId: APP_ID,
-            appKey: APP_KEY
-        })
-    </script>
+    <script src="./av.js"></script>
+    <script src="./upload.js"></script>
 </body>
 </html>

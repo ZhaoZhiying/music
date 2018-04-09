@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.upload{
+    border: 1px dashed #ddd;
+    padding: 30px;
+    margin: 10px;
+    width: 300px;
+    border-radius: 10px;
+}
