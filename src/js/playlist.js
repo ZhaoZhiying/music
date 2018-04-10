@@ -1,8 +1,8 @@
 {
     let view = {
-        el: '.playlist-wrapper',
+        el: '.page__sidebar__playlist',
         template: `
-            <ul class="playlist"></ul>
+            <ul class="page__sidebar__playlist__content"></ul>
         `,
         render(data){
             let $el = $(this.el)
@@ -45,10 +45,10 @@
             this.view.render(this.model.data)
             this.getAllSongs()
             this.bindEvents()
+            this.bindEventHub()
         },
         getAllSongs(){
             return this.model.find().then(()=>{
-                console.log(this.model.data)
                 this.view.render(this.model.data)
             })
         },
@@ -56,17 +56,32 @@
             $(this.view.el).on('click', 'li', (e)=>{
                 this.view.activeItem(e.currentTarget)
                 let songId = e.currentTarget.getAttribute('dataSongId')
-                window.eventHub.emit('select', {id: songId})
+                let data
+                let songs = this.model.data.songs
+                for(let i=0; i<songs.length; i++){
+                    if(songs[i].id === songId){
+                        data = songs[i]
+                        break
+                    }
+                }
+                //深拷贝
+                let string = JSON.stringify(data)
+                let object = JSON.parse(string)
+                window.eventHub.emit('select', object)
             })
         },
         bindEventHub(){
             window.eventHub.on('upload', ()=>{
                 this.view.clearActive()
             })
-            //监听 newSong 事件
+            //监听 newSong 事件，创建 song
             window.eventHub.on('create', (songData)=>{ 
                 this.model.data.songs.push(songData)
                 this.view.render(this.model.data)
+            })
+            //点击 newSong
+            window.eventHub.on('new', ()=>{
+                this.view.clearActive()
             })
         },
     }

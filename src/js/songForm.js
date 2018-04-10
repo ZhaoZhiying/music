@@ -2,8 +2,7 @@
     let view = {
         el: '.page__main',
         template: `
-            <h1>新建歌曲</h1>
-            <form class="form">
+            <form class="page__main__form">
                 <div class="row">
                     <label>歌名</label>
                     <input name="name" type="text" value="__name__" autocomplete="off">
@@ -16,7 +15,7 @@
                     <label>外链</label>
                     <input name="url" type="text" value="__url__" autocomplete="off">
                 </div>
-                <button class="save">保存</button>
+                <button class="page__main__form__save">保存</button>
             </form>
         `,
         render(data = {}){
@@ -26,6 +25,12 @@
                 html = html.replace(`__${string}__`, data[string] || '')
             })
             $(this.el).html(html)
+            //标题切换
+            if(data.id){
+                $(this.el).prepend('<h1>编辑歌曲</h1>')
+            }else{
+                $(this.el).prepend('<h1>新建歌曲</h1>')
+            }
         },
         reset(){
             this.render({})
@@ -71,7 +76,22 @@
             this.view.render(this.model.data)
             this.bindEvents()
             window.eventHub.on('upload', (data)=>{
-                this.view.render(data)
+                this.model.data = data
+                this.view.render(this.model.data)
+           })
+           window.eventHub.on('select', (data)=>{
+               this.model.data = data
+               this.view.render(this.model.data)
+           })
+           //监听点击 newSong
+           window.eventHub.on('new', ()=>{
+                this.model.data = {
+                    name: '',
+                    singer: '',
+                    url: '',
+                    id: ''
+                }
+                this.view.render(this.model.data)
            })
         },
         bindEvents(){

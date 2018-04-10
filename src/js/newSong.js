@@ -1,6 +1,6 @@
 {
    let view = {
-       el: '.new-song',
+       el: '.page__sidebar__new',
        template: `
         新建歌曲
        `,
@@ -21,9 +21,13 @@
            window.eventHub.on('select', (data)=>{
                this.deactive()
            })
+           //监听点击事件
+           $(this.view.el).on('click', this.active.bind(this))
        },
        active(){
            $(this.view.el).addClass('active')
+           //说明用户要新建歌曲
+           window.eventHub.emit('new') 
        },
        deactive(){
             $(this.view.el).removeClass('active')

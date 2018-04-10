@@ -6,12 +6,10 @@ button{border-style: none;}
 body{font-size: 12px; line-height: 1.5;}
 
 /* layout */
-
 .page{
     display: flex;
     height: 100vh;
 }
-
 /* sidebar */
 .page__sidebar{
     border: 1px #ddd solid;
@@ -20,26 +18,26 @@ body{font-size: 12px; line-height: 1.5;}
     display: flex;
     flex-direction: column;
 }
-.page__sidebar .new-song{
+.page__sidebar__new{
     margin: 10px;
     padding: 10px;
     text-align: center;
 }
-.page__sidebar .new-song.active{
+.page__sidebar__new.active{
     background: #ddd;
 }
-.page__sidebar .playlist{
+.page__sidebar__playlist{
     flex-grow: 1;
 }
-.page__sidebar .playlist > li{
+.page__sidebar__playlist__content > li{
     border-bottom: 1px #ddd solid;
     padding: 10px;
     margin: 0 10px;
 }
-.page__sidebar .playlist > li.active{
+.page__sidebar__playlist__content > li.active{
     background: #ddd;
 }
-.page__sidebar .upload-area .container{
+.page__sidebar__upload{
     border: 1px dashed #ddd;
     margin: 10px;
     padding: 20px;
@@ -47,23 +45,22 @@ body{font-size: 12px; line-height: 1.5;}
     display: flex;
     flex-direction: column;
 }
-.page__sidebar .upload-area .container button{
+.page__sidebar__upload__content__button{
     border: 1px #ddd solid;
     color: #333;
     padding: 2px;
     margin-bottom: 10px;
 }
-
 /* main */
 .page__main{
     border: 1px #ddd solid;
     flex-grow: 1;
     padding: 10px;
 }
-.page__main .form .row{
+.page__main__form .row{
     margin: 10px 0;
 }
-.page__main .save{
+.page__main__form__save{
     border: 1px #ddd solid;
     padding: 4px 10px;
 }
