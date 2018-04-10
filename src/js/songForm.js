@@ -39,7 +39,6 @@
 
     let model = {
         data: {name: '', singer: '', url: '', id: ''},
-        //更新
         update(data){
             var song = AV.Object.createWithoutData('Song', this.data.id)
             song.set('name', data.name)
