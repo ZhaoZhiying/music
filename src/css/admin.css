@@ -60,6 +60,9 @@ body{font-size: 12px; line-height: 1.5;}
 .page__main__form .row{
     margin: 10px 0;
 }
+.page__main__form .row > input{
+    width: 500px;
+}
 .page__main__form__save{
     border: 1px #ddd solid;
     padding: 4px 10px;

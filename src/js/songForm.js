@@ -75,24 +75,20 @@
             this.model = model
             this.view.render(this.model.data)
             this.bindEvents()
-            window.eventHub.on('upload', (data)=>{
+            window.eventHub.on('select', (data)=>{
                 this.model.data = data
                 this.view.render(this.model.data)
-           })
-           window.eventHub.on('select', (data)=>{
-               this.model.data = data
-               this.view.render(this.model.data)
-           })
-           //监听点击 newSong
-           window.eventHub.on('new', ()=>{
-                this.model.data = {
-                    name: '',
-                    singer: '',
-                    url: '',
-                    id: ''
+            })
+            window.eventHub.on('new', (data)=>{
+                //如果是数据库传来的 id，点击‘新建歌曲’就清空 form
+                if(this.model.data.id){
+                    this.model.data = {name: '', singer: '', url: '', id: ''}
+                }else{
+                    //如果数据库没有这个 id，就把 data 记录到 model 里
+                    Object.assign(this.model.data, data)
                 }
                 this.view.render(this.model.data)
-           })
+            })
         },
         bindEvents(){
             $(this.view.el).on('submit', 'form', (e)=>{ //事件委托，因为一开始 form 不存在

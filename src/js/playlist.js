@@ -71,15 +71,11 @@
             })
         },
         bindEventHub(){
-            window.eventHub.on('upload', ()=>{
-                this.view.clearActive()
-            })
             //监听 newSong 事件，创建 song
             window.eventHub.on('create', (songData)=>{ 
                 this.model.data.songs.push(songData)
                 this.view.render(this.model.data)
             })
-            //点击 newSong
             window.eventHub.on('new', ()=>{
                 this.view.clearActive()
             })
