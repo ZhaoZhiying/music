@@ -1,6 +1,6 @@
 {
     let view = {
-        el: '.page__sidebar__upload',
+        el: '.page-sidebar__upload',
         find(selector){
             return $(this.el).find(selector)[0]
         }

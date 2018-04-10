@@ -1,6 +1,6 @@
 {
    let view = {
-       el: '.page__sidebar__new',
+       el: '.page-sidebar__new',
        template: `
         新建歌曲
        `,

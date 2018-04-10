@@ -1,8 +1,8 @@
 {
     let view = {
-        el: '.page__main',
+        el: '.page-main',
         template: `
-            <form class="page__main__form">
+            <form class="page-main__form">
                 <div class="row">
                     <label>歌名</label>
                     <input name="name" type="text" value="__name__" autocomplete="off">
@@ -15,7 +15,7 @@
                     <label>外链</label>
                     <input name="url" type="text" value="__url__" autocomplete="off">
                 </div>
-                <button class="page__main__form__save">保存</button>
+                <button class="page-main__form__save">保存</button>
             </form>
         `,
         render(data = {}){

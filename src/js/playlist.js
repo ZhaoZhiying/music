@@ -1,8 +1,8 @@
 {
     let view = {
-        el: '.page__sidebar__playlist',
+        el: '.page-sidebar__playlist',
         template: `
-            <ul class="page__sidebar__playlist__content"></ul>
+            <ul class="page-sidebar__playlist__content"></ul>
         `,
         render(data){
             let $el = $(this.el)

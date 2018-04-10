@@ -11,33 +11,33 @@ body{font-size: 12px; line-height: 1.5;}
     height: 100vh;
 }
 /* sidebar */
-.page__sidebar{
+.page-sidebar{
     border: 1px #ddd solid;
     border-right: none;
     width: 200px;
     display: flex;
     flex-direction: column;
 }
-.page__sidebar__new{
+.page-sidebar__new{
     margin: 10px;
     padding: 10px;
     text-align: center;
 }
-.page__sidebar__new.active{
+.page-sidebar__new.active{
     background: #ddd;
 }
-.page__sidebar__playlist{
+.page-sidebar__playlist{
     flex-grow: 1;
 }
-.page__sidebar__playlist__content > li{
+.page-sidebar__playlist__content > li{
     border-bottom: 1px #ddd solid;
     padding: 10px;
     margin: 0 10px;
 }
-.page__sidebar__playlist__content > li.active{
+.page-sidebar__playlist__content > li.active{
     background: #ddd;
 }
-.page__sidebar__upload{
+.page-sidebar__upload{
     border: 1px dashed #ddd;
     margin: 10px;
     padding: 20px;
@@ -45,25 +45,25 @@ body{font-size: 12px; line-height: 1.5;}
     display: flex;
     flex-direction: column;
 }
-.page__sidebar__upload__content__button{
+.page-sidebar__upload__content__button{
     border: 1px #ddd solid;
     color: #333;
     padding: 2px;
     margin-bottom: 10px;
 }
 /* main */
-.page__main{
+.page-main{
     border: 1px #ddd solid;
     flex-grow: 1;
     padding: 10px;
 }
-.page__main__form .row{
+.page-main__form .row{
     margin: 10px 0;
 }
-.page__main__form .row > input{
+.page-main__form .row > input{
     width: 500px;
 }
-.page__main__form__save{
+.page-main__form__save{
     border: 1px #ddd solid;
     padding: 4px 10px;
 }
