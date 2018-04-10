@@ -38,11 +38,18 @@
     }
 
     let model = {
-        data: {
-            name: '',
-            singer: '',
-            url: '',
-            id: ''
+        data: {name: '', singer: '', url: '', id: ''},
+        //更新
+        update(data){
+            var song = AV.Object.createWithoutData('Song', this.data.id)
+            song.set('name', data.name)
+            song.set('singer', data.singer)
+            song.set('url', data.url)
+            return song.save().then((response)=>{
+                //更新成功就保存新的数据（由于 leanCloud 响应没有最新的数据）
+                Object.assign(this.data, data) 
+                return response
+            })
         },
         create(data){
             // 声明类型
@@ -90,21 +97,40 @@
                 this.view.render(this.model.data)
             })
         },
+        save(){
+            let needs = ['name', 'singer', 'url']
+            let data = {}
+            needs.map((string)=>{
+                data[string] = $(this.view.el).find(`[name="${string}"]`).val()
+            })
+            this.model.create(data).then(()=>{
+                this.view.reset()
+                //成功创建，进行深拷贝 this.model.data
+                let string = JSON.stringify(this.model.data)
+                let object = JSON.parse(string)
+                window.eventHub.emit('create', object)
+            })
+        },
+        update(){
+            let needs = ['name', 'singer', 'url']
+            let data = {}
+            needs.map((string)=>{
+                data[string] = $(this.view.el).find(`[name="${string}"]`).val()
+            })
+            this.model.update(data).then(()=>{
+                window.eventHub.emit('update', JSON.parse(JSON.stringify(this.model.data)))
+            })
+        },
         bindEvents(){
             $(this.view.el).on('submit', 'form', (e)=>{ //事件委托，因为一开始 form 不存在
                 e.preventDefault()
-                let needs = ['name', 'singer', 'url']
-                let data = {}
-                needs.map((string)=>{
-                    data[string] = $(this.view.el).find(`[name="${string}"]`).val()
-                })
-                this.model.create(data).then(()=>{
-                    this.view.reset()
-                    //成功创建，进行深拷贝 this.model.data
-                    let string = JSON.stringify(this.model.data)
-                    let object = JSON.parse(string)
-                    window.eventHub.emit('create', object)
-                })
+                //判断歌曲是否存在
+                if(this.model.data.id){
+                    //收集用户编辑的信息
+                    this.update()
+                }else{
+                    this.save()
+                }
             }) 
         },
     }
