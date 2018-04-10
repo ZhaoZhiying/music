@@ -20,9 +20,13 @@ body{font-size: 12px; line-height: 1.5;}
     display: flex;
     flex-direction: column;
 }
-.page__sidebar .song-new{
+.page__sidebar .new-song{
     margin: 10px;
+    padding: 10px;
     text-align: center;
+}
+.page__sidebar .new-song.active{
+    background: #ddd;
 }
 .page__sidebar .playlist{
     flex-grow: 1;
@@ -32,7 +36,10 @@ body{font-size: 12px; line-height: 1.5;}
     padding: 10px;
     margin: 0 10px;
 }
-.page__sidebar .upload-area .upload{
+.page__sidebar .playlist > li.active{
+    background: #ddd;
+}
+.page__sidebar .upload-area .container{
     border: 1px dashed #ddd;
     margin: 10px;
     padding: 20px;
@@ -40,14 +47,11 @@ body{font-size: 12px; line-height: 1.5;}
     display: flex;
     flex-direction: column;
 }
-.page__sidebar .upload-area .upload > button{
+.page__sidebar .upload-area .container button{
     border: 1px #ddd solid;
     color: #333;
     padding: 2px;
     margin-bottom: 10px;
-}
-.page__sidebar .upload-area .upload > p{
-    color: #999;
 }
 
 /* main */
