@@ -16,7 +16,7 @@
             //引入Plupload 、qiniu.js后
             var uploader = Qiniu.uploader({
                 runtimes: 'html5',    //上传模式,依次退化
-                browse_button: this.view.find('.page__sidebar__upload__content__button'),       //上传选择的点选按钮，**必需**
+                browse_button: this.view.find('#uploadButton'),       //上传选择的点选按钮，**必需**
                 uptoken_url: 'http://localhost:8888/uptoken',            //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
                 //uptoken : '', //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
                 // unique_names: true, // 默认 false，key为文件名。若开启该选项，SDK为自动生成上传成功后的key（文件名）。
@@ -27,7 +27,7 @@
                 //container: 'container',           //上传区域DOM ID，默认是browser_button的父元素，
                 max_file_size: '40mb',           //最大文件体积限制
                 dragdrop: true,                   //开启可拖曳上传
-                drop_element: this.view.find('.page__sidebar__upload__content'),        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+                drop_element: this.view.find('#uploadContent'),        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
                 chunk_size: '4mb',                //分块上传时，每片的体积
                 auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
                 init: {
@@ -38,13 +38,13 @@
                     },
                     'BeforeUpload': function(up, file) {
                         // 每个文件上传前,处理相关的事情
+                        window.eventHub.emit('beforeUpload')
                     },
                     'UploadProgress': function(up, file) {
                         // 每个文件上传时,处理相关的事情
-                        uploadStatus.textContent = '上传中'
                     },
                     'FileUploaded': function(up, file, info) {
-                        uploadStatus.textContent = ''
+                        window.eventHub.emit('afterUpload')
                         //获取外链
                         var domain = up.getOption('domain')
                         var response = JSON.parse(info.response)

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>管理页面</title>
     <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="./css/loading.css">
 </head>
 <body>
     <div class="page">
@@ -13,8 +14,8 @@
             <div class="page-sidebar__new"></div>
             <div class="page-sidebar__playlist"></div>
             <div class="page-sidebar__upload">
-                <div class="page-sidebar__upload__content">
-                    <div class="page-sidebar__upload__content__button">
+                <div class="page-sidebar__upload__content" id="uploadContent">
+                    <div class="page-sidebar__upload__content__button" id="uploadButton">
                             <p>点击上传或拖曳文件</p>
                             <p>文件大小不能超过40MB</p>
                     </div>
@@ -24,6 +25,8 @@
         </aside>
         <main class="page-main"></main>
     </div>
+
+    <div class="loading" id="loading"></div>
 
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
@@ -37,5 +40,6 @@
     <script src="./js/playlist.js"></script>
     <script src="./js/songForm.js"></script>
     <script src="./js/uploadArea.js"></script>
+    <script src="./js/loading.js"></script>
 </body>
 </html>
